@@ -1,0 +1,78 @@
+@import './base.css';
+
+/* Global layout improvements and responsive utilities */
+
+/* Root app grid replaced with single column and container usage */
+#app { min-height: 100vh; display:block; background: linear-gradient(180deg,#fff,#fbfdff); }
+
+/* Navbar (adjusted in NavBar.vue to match these classes) */
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+}
+.navbar .logo{
+  font-weight:700;
+  color:var(--color-text);
+  text-decoration:none;
+  font-size:1.05rem;
+}
+
+/* Links group */
+.navbar .links{ display:flex; gap:12px; align-items:center; }
+
+/* User info */
+.usuario-info{ display:flex; gap:8px; align-items:center; }
+
+/* Generic card variants used across views */
+.card-home, .card-login, .card-cadastro, .card-agendamento, .card-consultas{
+  composes: card;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+/* Buttons specific */
+.btn-destaque{ composes: btn btn-primary; font-weight:700; }
+.btn-secundario{ composes: btn; border-radius: 8px; }
+.btn-discreto{ composes: btn btn-ghost; color:var(--color-muted); }
+
+/* Form spacing */
+.form-group{ margin-bottom: var(--space-md); }
+
+/* Table visuals */
+.table-container table{
+  width:100%;
+  border-collapse: collapse;
+}
+.table-container th, .table-container td{
+  text-align:left;
+  padding: 10px 8px;
+  border-bottom:1px solid #eef2f7;
+}
+
+/* Small screens: stack content and make buttons full-width where appropriate */
+@media (max-width: 767px){
+  .navbar{ padding: 10px 0; }
+  .links{ display:none; } /* replaced by mobile menu */
+  .menu-toggle{ display:inline-flex; }
+  .card-home, .card-login, .card-cadastro, .card-agendamento, .card-consultas{
+    padding: var(--space-md);
+    width:100%;
+  }
+  .btn{ width:100%; justify-content:center; padding-top:12px; padding-bottom:12px; }
+}
+
+/* Larger screens: show desktop behavior */
+@media (min-width: 768px){
+  .links{ display:flex; }
+  .menu-toggle{ display:none; }
+  .btn{ width: auto; }
+}
+
+/* Improve focus visuals for interactive elements */
+a:focus, button:focus, input:focus { outline-offset: 3px; }
+
+/* Small utility tweaks */
+.center-vertical{ display:flex; align-items:center; }

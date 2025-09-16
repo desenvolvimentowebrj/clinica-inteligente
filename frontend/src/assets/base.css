@@ -1,0 +1,136 @@
+/* Improved base variables and accessibility-focused defaults
+   Changes:
+   - Defined semantic color variables and spacing scale
+   - Improved contrast and reduced proprietary vt- vars for clarity
+   - Mobile-first typography using clamp for better scaling
+*/
+:root{
+  --color-bg: #ffffff;
+  --color-surface: #f8f9fb;
+  --color-primary: #2c6ef2;
+  --color-primary-contrast: #ffffff;
+  --color-muted: #6b7280;
+  --color-text: #111827;
+  --color-danger: #dc2626;
+  --radius: 8px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --max-width: 1100px;
+}
+
+/* Use a responsive base font size */
+html{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 16px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Accessible focus outline */
+:focus{
+  outline: 3px solid rgba(44,110,242,0.25);
+  outline-offset: 2px;
+}
+
+/* Basic element reset */
+*,
+*::before,
+*::after { box-sizing: border-box; margin:0; padding:0; }
+
+img{ max-width:100%; height:auto; display:block; }
+
+button{ font: inherit; cursor: pointer; }
+
+/* Utility container to center content */
+.container{
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* Headings */
+h1{ font-size: clamp(1.5rem, 2.2vw, 2.25rem); margin-bottom: var(--space-sm); }
+h2{ font-size: clamp(1.25rem, 1.8vw, 1.75rem); margin-bottom: var(--space-sm); }
+h3{ font-size: clamp(1.05rem, 1.2vw, 1.2rem); margin-bottom: var(--space-xs); }
+
+p{ margin-bottom: var(--space-md); color: var(--color-muted); }
+
+/* Forms */
+label{ display:block; margin-bottom: 6px; font-weight:600; color:var(--color-text); }
+input[type="text"], input[type="email"], input[type="password"], input[type="date"],
+select, textarea {
+  width:100%;
+  padding: 0.625rem;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid #e6e9ee;
+  background: var(--color-surface);
+  font-size: 0.95rem;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(44,110,242,0.08);
+}
+
+/* Tables responsive container */
+.table-container{ width:100%; overflow:auto; }
+
+/* Buttons */
+.btn{
+  display: inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 1px 0 rgba(16,24,40,0.02);
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.btn-ghost{
+  background: transparent;
+  border:1px solid #e6e9ee;
+}
+
+/* Small helper */
+.center{ text-align:center; }
+
+/* Mobile first layout adjustments */
+.layout{ min-height:100vh; display:flex; flex-direction:column; }
+.content{ flex:1; padding: var(--space-lg) 0; }
+
+/* Cards */
+.card{
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* Accessibility helpers */
+.erro{ color: var(--color-danger); font-weight:600; margin-top:6px; }
+
+/* Responsive breakpoints */
+@media (min-width: 768px){
+  html{ font-size: 16px; }
+  .content{ padding: calc(var(--space-lg) + 8px) 0; }
+}
